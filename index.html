@@ -1,0 +1,20 @@
+<html>
+
+<head>
+	<title>websocket bug</title>
+</head>
+
+<body>
+	<script type="module">
+		import wasm, {test} from "./pkg/websocket_bug.js";
+
+		await wasm({ moduleOrPath: "./pkg/websocket_bug_bg.wasm" });
+
+		let ws = new WebSocket("ws://localhost:4000");
+		ws.onopen = () => {
+			console.log(test(ws));
+		}
+	</script>
+</body>
+
+</html>
